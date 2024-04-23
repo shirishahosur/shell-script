@@ -1,6 +1,9 @@
 #!/bin/bash
 
 USERID=$(id -u)
+TIMESTAMP=$(date +%F-%H-%M_%S)
+SCRIPT_NAME=$($0 | cut -d "." -f1)
+LOGFILE=/temp/$SCRIPT_NAME-$TIMESTAMP.log
 
 VALIDATE(){
     if [ $1 -ne 0 ]
@@ -25,6 +28,5 @@ VALIDATE $? "Installing MySQL"
 
 
 dnf install git -y
-VALIDATE $? "Installing MySQL"
+VALIDATE $? "Installing git"
 
-echo "is script proceeding?"
